@@ -1,0 +1,25 @@
+{
+  "name": "Mesto",
+  "version": "1.0.0",
+  "description": "praktikum project",
+  "main": "src/script.js",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server --mode development --open --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glpsch/The-place.git"
+  },
+  "author": "Galina Psch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glpsch/The-place/issues"
+  },
+  "homepage": "https://github.com/glpsch/The-place#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
