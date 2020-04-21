@@ -12,6 +12,9 @@ import Api from './API.js';
 
 (function () {
 
+// console.log("7777777777777777");
+// check webpack-dev-server --watch not working
+
     const list = document.querySelector('.places-list');
     const newCardButton = document.querySelector('.user-info__button');
     const popupAddCardElement = document.querySelector('.popup_add-card');
