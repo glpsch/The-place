@@ -8,6 +8,9 @@ import CardList from './classCardList.js';
 import UserInfo from './classUser.js';
 import FormValidator from './classFormValidator.js';
 import Api from './API.js';
+///
+import '../pages/index.css';
+
 
 
 (function () {

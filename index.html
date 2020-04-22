@@ -6,14 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
+
 </head>
 
 <body>
 
   <div class="root">
     <header class="header root__section">
-      <img src="./images/logo.svg" alt="mesto logo" class="logo">
+      <!-- <img src="./images/logo.svg" alt="mesto logo" class="logo"> -->
+      <img src="<%=require('./images/logo.svg')%>" alt="mesto logo" class="logo">
+      <!-- <img src=“<%=require(‘./images/logo.svg’).default%>” alt=“mesto logo” class=“logo”> -->
     </header>
 
     <div class="profile root__section">
@@ -33,7 +37,7 @@
     </div>
     <div class="popup popup_add-card">
       <div class="popup__content">
-        <img src="./images/close.svg" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
         <h3 class="popup__title">Новое место</h3>
 
         <form class="popup__form" name="new" novalidate>
@@ -55,7 +59,7 @@
 
     <div class="popup popup_profile">
       <div class="popup__content">
-        <img src="./images/close.svg" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
         <h3 class="popup__title">Редактировать профиль</h3>
 
         <form class="popup__form" name="user" novalidate>
@@ -79,7 +83,7 @@
 
 <div class="popup popup_avatar">
   <div class="popup__content">
-    <img src="./images/close.svg" alt="" class="popup__close">
+    <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
     <h3 class="popup__title">Обновить аватар</h3>
 
     <form class="popup__form" name="avatar" novalidate>
@@ -98,8 +102,9 @@
 
     <div class="popup popupImage">
       <div class="popup__content popup__image-content">
-        <img src="./images/close.svg" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
         <div class="popup__image">
+          <!-- img -->
           <img src="" alt="" class="popup__image-src">
         </div>
       </div>
@@ -133,7 +138,10 @@
   <script src="./src/classCardList.js"></script> -->
   <!-- <script src="./src/classUser.js" type="module"></script> -->
   <!-- <script src="./src/classFormValidator.js"></script> -->
-  <script src="./src/script.js" type="module"></script>
+
+  <!-- <script src="./src/script.js" type="module"></script> -->
+  <script src="<%= htmlWebpackPlugin.files.js %>"></script>
+  
 </body>
 
 </html>
