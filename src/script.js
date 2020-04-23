@@ -15,7 +15,7 @@ import '../pages/index.css';
 
 (function () {
 
-// console.log("hot reload");
+console.log("hot reload");
 
     const list = document.querySelector('.places-list');
     const newCardButton = document.querySelector('.user-info__button');

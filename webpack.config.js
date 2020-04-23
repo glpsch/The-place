@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
+//
+const TerserPlugin = require('terser-webpack-plugin');
 
 
 module.exports = {
@@ -86,4 +88,17 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin()
     ]
+    ,
+    optimization: {
+        minimizer: [
+          new TerserPlugin({
+            // sourceMap: true,
+            terserOptions: {
+              compress: {
+                drop_console: true,
+              },
+            },
+          }),
+        ],
+      }
 };
