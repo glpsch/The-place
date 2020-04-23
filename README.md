@@ -2,7 +2,7 @@
 
 #### Yandex.Praktikum sprint11
 
-v1.0.0
+v1.0.1
 
 https://glpsch.github.io/The-place
 
