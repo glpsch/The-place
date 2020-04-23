@@ -1,5 +1,6 @@
 {
   "name": "mesto",
+  "homepage": "https://glpsch.github.io/The-place",
   "version": "1.0.0",
   "description": "praktikum project",
   "main": "src/script.js",
@@ -18,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/glpsch/The-place/issues"
   },
-  "homepage": "https://github.com/glpsch/The-place#readme",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
