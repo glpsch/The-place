@@ -15,7 +15,7 @@ import '../pages/index.css';
 
 (function () {
 
-console.log("eee");
+console.log("888");
 // check webpack-dev-server --watch not working
 
     const list = document.querySelector('.places-list');
