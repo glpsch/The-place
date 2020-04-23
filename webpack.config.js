@@ -9,12 +9,34 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 
+function reloadHtml() {
+    this.plugin('compilation',
+      thing => thing.plugin('html-webpack-plugin-after-emit', trigger));
+    const cache = {};
+    function trigger(data, callback) {
+      const orig = cache[data.outputName];
+      const html = data.html.source();
+      if (orig && orig !== html)
+        devServer.sockWrite(devServer.sockets, 'content-changed');
+      cache[data.outputName] = html;
+      callback();
+    }
+  }
+
 module.exports = {
     entry: { main: './src/script.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[chunkhash].js'
-        // filename: '[name].[hash].js'
+        filename: isDev ? '[name].[hash].js' : '[name].[chunkhash].js'
+    },
+    devServer: {
+        hot: true,
+        before(app, server) {
+            server._watch(`./index.html`);
+        }
+    },
+    watchOptions: {
+        ignored: /node_modules/
     },
     module: {
         rules: [
@@ -73,13 +95,14 @@ module.exports = {
             canPrint: true
         }), // подключите плагин после MiniCssExtractPlugin
         new HtmlWebpackPlugin({
-            inject: false,
+            // inject: false,
             template: './index.html',
             filename: 'index.html'
         }),
-        new WebpackMd5Hash(),
+        // new WebpackMd5Hash(),
         new webpack.DefinePlugin({
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 };
