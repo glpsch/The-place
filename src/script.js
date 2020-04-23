@@ -15,8 +15,7 @@ import '../pages/index.css';
 
 (function () {
 
-console.log("888");
-// check webpack-dev-server --watch not working
+// console.log("hot reload");
 
     const list = document.querySelector('.places-list');
     const newCardButton = document.querySelector('.user-info__button');
