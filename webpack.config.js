@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack')
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -14,7 +14,7 @@ module.exports = {
     entry: { main: './src/script.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[hash].js' 
+        filename: '[name].[hash].js'
     },
     devServer: {
         hot: true,
@@ -43,26 +43,21 @@ module.exports = {
                     'postcss-loader'
                 ]
             },
-        
+            ///
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
+                test: /\.(png|jp?g|gif|ico|svg)$/i,
                 use: [
-                    'file-loader',
+                    'file-loader?name=./images/[name].[ext]',
                     {
                         loader: 'image-webpack-loader',
-                        options: {
-                            bypassOnDebug: true, // webpack@1.x
-                            disable: true, // webpack@2.x and newer
-                        },
+                        options: {}
                     },
-                ],
+                ]
             },
-
             {
                 test: /\.(eot|ttf|woff|woff2)$/,
                 loader: 'file-loader?name=./vendor/[name].[ext]'
             }
-
         ]
     },
     plugins: [
@@ -76,7 +71,7 @@ module.exports = {
                 preset: ['default'],
             },
             canPrint: true
-        }), 
+        }),
         new HtmlWebpackPlugin({
             // inject: false,
             template: './index.html',
@@ -91,14 +86,14 @@ module.exports = {
     ,
     optimization: {
         minimizer: [
-          new TerserPlugin({
-            // sourceMap: true,
-            terserOptions: {
-              compress: {
-                drop_console: true,
-              },
-            },
-          }),
+            new TerserPlugin({
+                // sourceMap: true,
+                terserOptions: {
+                    compress: {
+                        drop_console: true,
+                    },
+                },
+            }),
         ],
-      }
+    }
 };
