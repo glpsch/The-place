@@ -15,7 +15,7 @@ import '../index.css';
 
 (function () {
 
-console.log("777");
+// console.log("888");
 
     const list = document.querySelector('.places-list');
     const newCardButton = document.querySelector('.user-info__button');

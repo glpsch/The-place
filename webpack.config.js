@@ -3,12 +3,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
-//
 const TerserPlugin = require('terser-webpack-plugin');
-
 
 module.exports = {
     entry: { main: './src/js/script.js' },
@@ -33,8 +30,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader"
                 }
-            },
-            ////////////
+            },      
             {
                 test: /\.css$/i,
                 use: [
@@ -43,7 +39,6 @@ module.exports = {
                     'postcss-loader'
                 ]
             },
-            ///
             {
                 test: /\.(png|jp?g|gif|ico|svg)$/i,
                 use: [
@@ -92,6 +87,9 @@ module.exports = {
                     compress: {
                         drop_console: true,
                     },
+                    output: {
+                        comments: false,
+                    }
                 },
             }),
         ],
