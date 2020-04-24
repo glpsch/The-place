@@ -9,7 +9,7 @@ import UserInfo from './classUser.js';
 import FormValidator from './classFormValidator.js';
 import Api from './API.js';
 ///
-import './index.css';
+import '../index.css';
 
 
 

@@ -11,7 +11,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 
 module.exports = {
-    entry: { main: './src/script.js' },
+    entry: { main: './src/js/script.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[hash].js'

@@ -3,7 +3,7 @@
   "homepage": "https://glpsch.github.io/The-place",
   "version": "1.0.0",
   "description": "praktikum project",
-  "main": "src/script.js",
+  "main": "src/js/script.js",
   "private": true,
   "scripts": {
     "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
