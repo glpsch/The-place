@@ -19,7 +19,7 @@ module.exports = {
     devServer: {
         hot: true,
         before(app, server) {
-            server._watch(`./index.html`);
+            server._watch(`./src/index.html`);
         }
     },
     watchOptions: {
@@ -74,7 +74,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             // inject: false,
-            template: './index.html',
+            template: './src/index.html',
             filename: 'index.html'
         }),
         new WebpackMd5Hash(),

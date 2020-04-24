@@ -9,13 +9,13 @@ import UserInfo from './classUser.js';
 import FormValidator from './classFormValidator.js';
 import Api from './API.js';
 ///
-import '../pages/index.css';
+import './index.css';
 
 
 
 (function () {
 
-console.log("hot reload");
+console.log("777");
 
     const list = document.querySelector('.places-list');
     const newCardButton = document.querySelector('.user-info__button');
