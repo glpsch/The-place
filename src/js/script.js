@@ -46,7 +46,8 @@ import '../index.css';
 
 
     //API
-    const serverUrl = 'https://praktikum.tk/cohort9';
+    const serverUrl = process.env.NODE_ENV === 'development' ? 'http://praktikum.tk/cohort9' : 'https://praktikum.tk/cohort9'; 
+
     const token = '6d533b35-4b93-4063-8918-2ae34c6610b3';
     const api = new Api(serverUrl, token);
     const myId = 'd635114492a656d23a0d726c';
