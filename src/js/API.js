@@ -6,23 +6,8 @@ export default class Api {
         this.authorizationToken = authorizationToken;
     }
 
-    /* REVIEW. Надо исправить. Общее замечание по всем методам Api. Методы Api должны только возвращать
-    результат работы с сервером (в виде промиса, который  так же может обработься в методе then ), а обработка
-    этих методов и вывод ошибок должен происходить с помощью имеющихся или откорректированных методов других классов
-    в script.js, то есть структура методов Api должна быть такой:
-    methodApi() {
-    return fetch('url', {
-        ...
-      })
-      .then(res => {
-          if(res.ok) return res.json();
-          return Promise.reject(res.status);
-      })
-    }  - на этом метод должен заканчиваться.
-    */
-
     getDefaultUserInfo() {
-        return fetch(this.server, {
+        return fetch(this.server + '/users/me', {
             headers: {
                 authorization: this.authorizationToken
             }
@@ -40,7 +25,7 @@ export default class Api {
         this.name = name;
         this.info = info;
 
-        return fetch(this.server, {
+        return fetch(this.server + '/users/me/', {
             method: 'PATCH',
             headers: {
                 authorization: this.authorizationToken,
@@ -61,7 +46,7 @@ export default class Api {
 
 
     getInitialCards() {
-        return fetch(this.server, {
+        return fetch(this.server + '/cards/', {
             headers: {
                 authorization: this.authorizationToken
             }
@@ -82,7 +67,7 @@ export default class Api {
         this.title = title;
         this.link = link;
 
-        return fetch(this.server, {
+        return fetch(this.server + '/cards/', {
             headers: {
                 authorization: this.authorizationToken,
                 'Content-Type': 'application/json'
@@ -101,7 +86,7 @@ export default class Api {
     removeCard(cardId) {
         this.cardId = cardId;
 
-        return fetch(this.server + this.cardId, {
+        return fetch(this.server  + '/cards/' + this.cardId, {
             headers: {
                 authorization: this.authorizationToken,
                 'Content-Type': 'application/json'
@@ -119,7 +104,7 @@ export default class Api {
     addLike(cardId) {
         this.cardId = cardId;
 
-        return fetch(this.server + 'like/' + this.cardId, {
+        return fetch(this.server  + '/cards/like/' + this.cardId, {
             method: 'PUT',
             headers: {
                 authorization: this.authorizationToken,
@@ -137,7 +122,7 @@ export default class Api {
     removeLike(cardId) {
         this.cardId = cardId;
 
-        return fetch(this.server + 'like/' + this.cardId, {
+        return fetch(this.server  + '/cards/like/' + this.cardId, {
             method: 'DELETE',
             headers: {
                 authorization: this.authorizationToken,
@@ -156,7 +141,7 @@ export default class Api {
     changeAvatar(link) {
         this.link = link;
 
-        return fetch(this.server + '/avatar', {          
+        return fetch(this.server + '/users/me/avatar', {          
             method: 'PATCH',
             headers: {
                 authorization: this.authorizationToken,
