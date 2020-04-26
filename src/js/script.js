@@ -8,9 +8,14 @@ import CardList from './classCardList.js';
 import UserInfo from './classUser.js';
 import FormValidator from './classFormValidator.js';
 import Api from './API.js';
+///
+import '../index.css';
+
 
 
 (function () {
+
+    // console.log("888");
 
     const list = document.querySelector('.places-list');
     const newCardButton = document.querySelector('.user-info__button');
@@ -40,12 +45,16 @@ import Api from './API.js';
     const avatarPicture = document.querySelector('.user-info__photo');
 
 
+    //API
+    const serverUrl = process.env.NODE_ENV === 'development' ? 'http://praktikum.tk/cohort9' : 'https://praktikum.tk/cohort9'; 
+
+    const token = '6d533b35-4b93-4063-8918-2ae34c6610b3';
+    const api = new Api(serverUrl, token);
+    const myId = 'd635114492a656d23a0d726c';
 
 
     // default user info  
-    const userInfoApi = new Api('https://praktikum.tk/cohort9/users/me', '6d533b35-4b93-4063-8918-2ae34c6610b3');
-
-    userInfoApi.getDefaultUserInfo()
+    api.getDefaultUserInfo()
         .then((user) => {
             defaultName.textContent = user.name;
             defaultInfo.textContent = user.about;
@@ -57,14 +66,12 @@ import Api from './API.js';
         .catch(onError);
 
 
-    // initial cards
-    const cardsApi = new Api('https://praktikum.tk/cohort9/cards/', '6d533b35-4b93-4063-8918-2ae34c6610b3');
-
-    cardsApi.getInitialCards()
+    // initial cards   
+    api.getInitialCards()
         .then((cards) => {
             // let shortlist = cards.slice(Math.max(cards.length - 8, 0));         
             const downloadedCards = cards.map(function (cardData) {
-                return (new Card(cardTemplate, cardData.name, cardData.link, cardData._id, cardData.owner._id, 'd635114492a656d23a0d726c', cardsApi, cardData.likes)).create();
+                return (new Card(cardTemplate, cardData.name, cardData.link, cardData._id, cardData.owner._id, myId, api, cardData.likes)).create();
             });
             const newCardList = new CardList(list, downloadedCards, popupAddCard, Card);
             newCardList.render();
@@ -114,7 +121,8 @@ import Api from './API.js';
 
         const link = avatarForm.elements.avatar_url;
         const linkValue = link.value;
-        userInfoApi.changeAvatar(linkValue)
+
+        api.changeAvatar(linkValue)
             .then((data) => {
                 avatarPicture.style.backgroundImage = 'url(' + data.avatar + ')';
                 popupAvatar.close();
@@ -125,7 +133,7 @@ import Api from './API.js';
                 popupAvatar.onUpload('Сохранить')
             });
     });
-    
+
 
     newForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -136,9 +144,9 @@ import Api from './API.js';
         const titleValue = title.value;
         const linkValue = link.value;
         // upload new card
-        cardsApi.uploadNewCard(titleValue, linkValue)
+        api.uploadNewCard(titleValue, linkValue)
             .then((data) => {
-                const newCard = new Card(cardTemplate, title.value, link.value, data._id, data.owner._id, 'd635114492a656d23a0d726c', cardsApi, data.likes);
+                const newCard = new Card(cardTemplate, title.value, link.value, data._id, data.owner._id, myId, api, data.likes);
                 localCardList.addCard(newCard.create());
             })
             .catch(onError)
@@ -153,7 +161,7 @@ import Api from './API.js';
         event.preventDefault();
         //onUpload       
         userPopup.onUpload('Загрузка..');
-        userInfoApi.uploadUserInfo(userNameInput.value, userInfoInput.value)
+        api.uploadUserInfo(userNameInput.value, userInfoInput.value)
             .then((res) => {
                 userRecord.setUserInfo(res.name, res.about);
                 userRecord.updateUserInfo();

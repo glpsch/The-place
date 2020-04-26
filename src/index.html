@@ -6,14 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
+
 </head>
 
 <body>
 
   <div class="root">
     <header class="header root__section">
-      <img src="./images/logo.svg" alt="mesto logo" class="logo">
+      <img src="<%=require('./images/logo.svg').default%>" alt="mesto logo" class="logo">
+
     </header>
 
     <div class="profile root__section">
@@ -33,21 +36,22 @@
     </div>
     <div class="popup popup_add-card">
       <div class="popup__content">
-        <img src="./images/close.svg" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
         <h3 class="popup__title">Новое место</h3>
 
         <form class="popup__form" name="new" novalidate>
           <div class="popup__input-container">
-            <input type="text" required minlength="2" maxlength="30" id="title" 
+            <input type="text" required minlength="2" maxlength="30" id="title"
               class="popup__input popup__input_type_title" placeholder="Название">
             <span class="popup__input_error" id="error-title"></span>
           </div>
           <div class="popup__input-container">
-            <input type="url" required minlength="2" id="link" 
-              class="popup__input popup__input_type_link-url" placeholder="Ссылка на изображение">
+            <input type="url" required minlength="2" id="link" class="popup__input popup__input_type_link-url"
+              placeholder="Ссылка на изображение">
             <span class="popup__input_error" id="error-link"></span>
           </div>
-          <button type name="button" id="button" class="button popup__button popup__button_add popup__button_inactive" disabled>+</button>  
+          <button type name="button" id="button" class="button popup__button popup__button_add popup__button_inactive"
+            disabled>+</button>
         </form>
 
       </div>
@@ -55,7 +59,7 @@
 
     <div class="popup popup_profile">
       <div class="popup__content">
-        <img src="./images/close.svg" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
         <h3 class="popup__title">Редактировать профиль</h3>
 
         <form class="popup__form" name="user" novalidate>
@@ -64,41 +68,43 @@
               class="popup__input popup__input_type_name">
             <span class="popup__input_error" id="error-name"></span>
           </div>
-          <div class="popup__input-container">          
+          <div class="popup__input-container">
             <input type="text" required minlength="2" maxlength="30" id="info"
               class="popup__input popup__input_type_link-url">
             <span class="popup__input_error" id="error-info"></span>
           </div>
-          <button type name="button" class="button popup__button popup__button_save" id="applyInfoButton">Сохранить</button>
+          <button type name="button" class="button popup__button popup__button_save"
+            id="applyInfoButton">Сохранить</button>
         </form>
 
       </div>
     </div>
 
-<!-- ------ -->
+    <!-- ------ -->
 
-<div class="popup popup_avatar">
-  <div class="popup__content">
-    <img src="./images/close.svg" alt="" class="popup__close">
-    <h3 class="popup__title">Обновить аватар</h3>
+    <div class="popup popup_avatar">
+      <div class="popup__content">
+        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
+        <h3 class="popup__title">Обновить аватар</h3>
 
-    <form class="popup__form" name="avatar" novalidate>
-     
-      <div class="popup__input-container">
-        <input type="url" required minlength="6" id="avatar_url" 
-          class="popup__input popup__input_type_link-url" placeholder="Ссылка на изображение">
-        <span class="popup__input_error" id="error-avatar_url"></span>
+        <form class="popup__form" name="avatar" novalidate>
+
+          <div class="popup__input-container">
+            <input type="url" required minlength="6" id="avatar_url" class="popup__input popup__input_type_link-url"
+              placeholder="Ссылка на изображение">
+            <span class="popup__input_error" id="error-avatar_url"></span>
+          </div>
+
+          <button type name="button" class="button popup__button popup__button_save"
+            id="applyAvatarButton">Сохранить</button>
+        </form>
+
       </div>
-
-      <button type name="button" class="button popup__button popup__button_save" id="applyAvatarButton">Сохранить</button>
-    </form>
-
-  </div>
-</div>
+    </div>
 
     <div class="popup popupImage">
       <div class="popup__content popup__image-content">
-        <img src="./images/close.svg" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
         <div class="popup__image">
           <img src="" alt="" class="popup__image-src">
         </div>
@@ -114,10 +120,10 @@
         </div>
         <div class="place-card__description">
           <h3 class="place-card__name">Title</h3>
-        <div class="place-card__like">
-          <button class="place-card__like-icon"></button>
-          <span class="place-card__like-count">0</span>
-        </div>
+          <div class="place-card__like">
+            <button class="place-card__like-icon"></button>
+            <span class="place-card__like-count">0</span>
+          </div>
         </div>
       </div>
     </template>
@@ -126,14 +132,10 @@
 
 
   </div>
-  <!-- <script type="module" src="./src/onError.js"></script> -->
-  <!-- <script src="./src/classSimplePopup.js"></script>
-  <script src="./src/classPopupWithForm.js"></script>
-  <script src="./src/classCard.js"></script>
-  <script src="./src/classCardList.js"></script> -->
-  <!-- <script src="./src/classUser.js" type="module"></script> -->
-  <!-- <script src="./src/classFormValidator.js"></script> -->
-  <script src="./src/script.js" type="module"></script>
+
+  <!-- <script src="./src/script.js" type="module"></script> -->
+  <!-- <script src="<%= htmlWebpackPlugin.files.js %>"></script> -->
+
 </body>
 
 </html>
